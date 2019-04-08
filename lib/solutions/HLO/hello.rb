@@ -7,5 +7,3 @@ class Hello
   end
 
 end
-
-
