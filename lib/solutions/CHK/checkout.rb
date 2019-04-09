@@ -2,7 +2,7 @@
 class Checkout
   def initialize
     @price_table = {"A" => 50, "B" => 30, "C" => 20, "D" => 15}
-    @offers = {"A" => [[5, 200], [3, 130]], "B" => [2, 45]}
+    @offers = {"A" => [[5, 200], [3, 130]], "B" => [[2, 45]]}
   end
 
   def checkout(skus) 
@@ -21,7 +21,6 @@ class Checkout
 
   def costs(skus)
     return skus.chars.uniq.map { |char| 
-      p "char #{char}"
       @offers[char] == nil ? skus.count(char) * @price_table[char] 
                         : offer_cost(char, skus.count(char))
     }
@@ -31,10 +30,6 @@ class Checkout
     offers = @offers[sku]
     offer_cost = 0
     non_offer_qty = offers.reduce(qty) { |rem, offer| 
-      p "rem #{rem}"
-      p "offer #{offer}"
-      p "offer[0] #{offer[0]}"
-      p "offer[1] #{offer[1]}"
       if qualify?(offer, rem)
         offer_cost += offer[1] * (rem / offer[0])
       end
