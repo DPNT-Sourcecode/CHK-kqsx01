@@ -28,11 +28,11 @@ class Checkout
 
   def offer_cost(sku, qty)
     offer_qty = @offers[sku][0]
-    return qty * @price_table[sku] if qty < offer_qty
     offer_cost = @offers[sku][1] * (qty / offer_qty)
     non_offer_cost = @price_table[sku] * (qty % offer_qty)
     return offer_cost + non_offer_cost
   end
 end
+
 
 
