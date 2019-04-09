@@ -35,9 +35,12 @@ class Checkout
       end
       rem % offer[0]
     }
-    # go through each offer, starting with biggest qty, calc offer cost and pass the remainder as the qty for looking at the next offer
-
     non_offer_cost = @price_table[sku] * non_offer_qty
     return offer_cost + non_offer_cost
   end
+
+  def qualify?(offer, qty)
+    return qty >= offer[0] ? true : false
+  end
 end
+
