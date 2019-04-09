@@ -41,4 +41,3 @@ class Checkout
     return offer_cost + non_offer_cost
   end
 end
-
