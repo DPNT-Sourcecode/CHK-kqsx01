@@ -10,6 +10,7 @@ class Checkout
     return -1 if validate(skus) == -1
     costs = costs(skus)
     total = costs.reduce(0) { |sum, num| sum + num }
+    total -= discounts(skus).reduce(0) { |sum, num| sum + num }
     return total 
   end
 
@@ -43,4 +44,12 @@ class Checkout
   def qualify?(offer, qty)
     return qty >= offer[0] ? true : false
   end
+
+  def discounts(skus)
+    return skus.chars.uniq.map { |char|
+      @offer_other_products[char] == nil ? 0
+        : discount(char, skus.count(char))
+    }
+  end
 end
+
