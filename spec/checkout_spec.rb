@@ -70,4 +70,124 @@ describe Checkout do
         c = Checkout.new
         expect(c.checkout("FFF")).to eq(20)
     end
+
+    it 'returns 20 when given G' do
+        c = Checkout.new
+        expect(c.checkout("G")).to eq(20)
+    end
+
+    it 'returns 10 when given H' do
+        c = Checkout.new
+        expect(c.checkout("H")).to eq(10)
+    end
+
+    it 'returns 35 when given I' do
+        c = Checkout.new
+        expect(c.checkout("I")).to eq(35)
+    end
+
+    it 'returns 60 when given J' do
+        c = Checkout.new
+        expect(c.checkout("J")).to eq(60)
+    end
+
+    it 'returns 80 when given K' do
+        c = Checkout.new
+        expect(c.checkout("K")).to eq(80)
+    end
+
+    it 'returns 90 when given L' do
+        c = Checkout.new
+        expect(c.checkout("L")).to eq(90)
+    end
+
+    it 'returns 15 when given M' do
+        c = Checkout.new
+        expect(c.checkout("M")).to eq(15)
+    end
+
+    it 'returns 40 when given N' do
+        c = Checkout.new
+        expect(c.checkout("N")).to eq(40)
+    end
+
+    it 'returns 10 when given O' do
+        c = Checkout.new
+        expect(c.checkout("O")).to eq(10)
+    end
+
+    it 'returns 50 when given P' do
+        c = Checkout.new
+        expect(c.checkout("P")).to eq(50)
+    end
+
+    it 'returns 30 when given Q' do
+        c = Checkout.new
+        expect(c.checkout("Q")).to eq(30)
+    end
+
+    it 'returns 50 when given R' do
+        c = Checkout.new
+        expect(c.checkout("R")).to eq(50)
+    end
+
+    it 'returns 30 when given S' do
+        c = Checkout.new
+        expect(c.checkout("S")).to eq(30)
+    end
+
+    it 'returns 20 when given T' do
+        c = Checkout.new
+        expect(c.checkout("T")).to eq(20)
+    end
+
+    it 'returns 40 when given U' do
+        c = Checkout.new
+        expect(c.checkout("U")).to eq(40)
+    end
+
+    it 'returns 50 when given V' do
+        c = Checkout.new
+        expect(c.checkout("V")).to eq(50)
+    end
+
+    it 'returns 20 when given W' do
+        c = Checkout.new
+        expect(c.checkout("W")).to eq(20)
+    end
+
+    it 'returns 90 when given X' do
+        c = Checkout.new
+        expect(c.checkout("X")).to eq(90)
+    end
+
+    it 'returns 10 when given Y' do
+        c = Checkout.new
+        expect(c.checkout("Y")).to eq(10)
+    end
+
+    it 'returns 50 when given Z' do
+        c = Checkout.new
+        expect(c.checkout("Z")).to eq(50)
+    end
+#     G    | 20    |                        |
+# | H    | 10    | 5H for 45, 10H for 80  |
+# | I    | 35    |                        |
+# | J    | 60    |                        |
+# | K    | 80    | 2K for 150             |
+# | L    | 90    |                        |
+# | M    | 15    |                        |
+# | N    | 40    | 3N get one M free      |
+# | O    | 10    |                        |
+# | P    | 50    | 5P for 200             |
+# | Q    | 30    | 3Q for 80              |
+# | R    | 50    | 3R get one Q free      |
+# | S    | 30    |                        |
+# | T    | 20    |                        |
+# | U    | 40    | 3U get one U free      |
+# | V    | 50    | 2V for 90, 3V for 130  |
+# | W    | 20    |                        |
+# | X    | 90    |                        |
+# | Y    | 10    |                        |
+# | Z    | 50    | 
 end
