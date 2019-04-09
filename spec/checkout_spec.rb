@@ -21,14 +21,14 @@ describe Checkout do
         expect(c.checkout("ABDCD")).to eq(130)
     end
 
-    it 'returns -1 when given Z' do
+    it 'returns -1 when given 1' do
         c = Checkout.new
-        expect(c.checkout("Z")).to eq(-1)
+        expect(c.checkout("1")).to eq(-1)
     end
 
-    it 'returns -1 when given ABCDZ' do
+    it 'returns -1 when given ABCD8' do
         c = Checkout.new
-        expect(c.checkout("ABCDZ")).to eq(-1)
+        expect(c.checkout("ABCD8")).to eq(-1)
     end
 
     it 'returns 130 when given AAA' do
