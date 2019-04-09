@@ -14,8 +14,8 @@ class Checkout
   def checkout(skus) 
     return -1 if validate(skus) == -1
     @sku_counts = count_each_sku(skus)
-    remove_free_products
-    costs = costs(skus)
+    sku_counts_after_discounts = remove_free_products
+    costs = costs(sku_counts_after_discounts)
     p "costs #{costs}"
     total = costs.reduce(0) { |sum, num| sum + num }
     return total 
@@ -33,7 +33,7 @@ class Checkout
     }.to_h
   end
 
-  def count_each_sku
+  def count_each_sku(skus)
     sku_counts = {}
     skus.chars.uniq.each { |char|
       sku_counts[char] = skus.count(char)
@@ -47,10 +47,12 @@ class Checkout
     return 0
   end 
 
-  def costs(skus)
-    return skus.chars.uniq.map { |char| 
-      @offers[char] == nil ? skus.count(char) * @price_table[char] 
-                        : offer_cost(char, skus.count(char))
+  def costs(sku_counts)
+    costs = []
+    skus.counts.each { |char, count| 
+      cost = @offers[char] == nil ? count * @price_table[char] 
+                        : offer_cost(char, count)
+      costs.push(cost)
     }
   end
 
@@ -95,4 +97,5 @@ class Checkout
     end 
   end
 end
+
 
