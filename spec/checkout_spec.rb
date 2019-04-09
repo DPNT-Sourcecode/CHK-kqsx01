@@ -55,4 +55,9 @@ describe Checkout do
         c = Checkout.new
         expect(c.checkout("AAAABBBCD")).to eq(290)
     end
+
+    it 'returns 80 when given BEE' do
+        c = Checkout.new
+        expect(c.checkout("BEE")).to eq(80)
+    end
 end
