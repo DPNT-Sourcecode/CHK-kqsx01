@@ -36,6 +36,11 @@ describe Checkout do
         expect(c.checkout("AAA")).to eq(130)
     end
 
+    it 'returns 200 when given AAAAA' do
+        c = Checkout.new
+        expect(c.checkout("AAAAA")).to eq(200)
+    end
+
     it 'returns 45 when given BB' do
         c = Checkout.new
         expect(c.checkout("BB")).to eq(45)
