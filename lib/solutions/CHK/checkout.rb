@@ -14,7 +14,7 @@ class Checkout
   def checkout(skus) 
     return -1 if validate(skus) == -1
     @sku_counts = count_each_sku(skus)
-    p "sku_counts #{@sku_counts}"
+    p "sku_counts1 #{@sku_counts}"
     sku_counts_after_discounts = remove_free_products
     p "sku_counts_after_discounts #{sku_counts_after_discounts}"
     costs = costs(sku_counts_after_discounts)
@@ -41,7 +41,10 @@ class Checkout
       p "char #{char}"
       p "skus.count(char) #{skus.count(char)}"
       sku_counts[char] = skus.count(char)
+      p "sku_counts[char] #{sku_counts[char]}"
     }
+    p "sku_counts2 #{sku_counts}"
+    return sku_counts
   end 
 
   def validate(skus)
@@ -101,3 +104,4 @@ class Checkout
     end 
   end
 end
+
