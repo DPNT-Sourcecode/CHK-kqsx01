@@ -21,10 +21,18 @@ describe Checkout do
         expect(c.checkout("ABDCD")).to eq(130)
     end
 
-    # For any illegal input return -1
     it 'returns -1 when given E' do
         c = Checkout.new
         expect(c.checkout("E")).to eq(-1)
     end
 
+    it 'returns -1 when given ABCDE' do
+        c = Checkout.new
+        expect(c.checkout("ABCDE")).to eq(-1)
+    end
+
+    it 'returns 130 when given AAA' do
+        c = Checkout.new
+        expect(c.checkout("AAA")).to eq(130)
+    end
 end

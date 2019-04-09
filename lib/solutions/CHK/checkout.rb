@@ -5,6 +5,7 @@ class Checkout
   end
 
   def checkout(skus) 
+    return -1 if validate(skus) == -1
     costs = skus.chars.uniq.map { |char| 
       skus.count(char) * @price_table[char] 
     }
@@ -12,5 +13,12 @@ class Checkout
     total = costs.reduce(0) { |sum, num| sum + num }
     return total 
   end
+
+  def validate(skus)
+    skus.chars.uniq.each { |char|
+      return -1 if @price_table[char] == nil
+    }
+    return 0
+  end 
 
 end
