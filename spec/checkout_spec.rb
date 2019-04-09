@@ -1,10 +1,10 @@
 require './lib/solutions/CHK/checkout.rb'
 
 describe Checkout do
-    it 'returns 15 when given D' do
-        c = Checkout.new
-        expect(c.checkout("D")).to eq(15)
-    end
+    # it 'returns 15 when given D' do
+    #     c = Checkout.new
+    #     expect(c.checkout("D")).to eq(15)
+    # end
 
     # it 'returns 30 when given DD' do
     #     c = Checkout.new
@@ -56,10 +56,10 @@ describe Checkout do
     #     expect(c.checkout("AAAABBBCD")).to eq(290)
     # end
 
-    # it 'returns 80 when given BEE' do
-    #     c = Checkout.new
-    #     expect(c.checkout("BEE")).to eq(80)
-    # end
+    it 'returns 80 when given BEE' do
+        c = Checkout.new
+        expect(c.checkout("BEE")).to eq(80)
+    end
 
     # it 'returns 190 when given BBBEEEE' do
     #     c = Checkout.new

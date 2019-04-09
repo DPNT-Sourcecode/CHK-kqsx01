@@ -61,6 +61,7 @@ class Checkout
                         : offer_cost(char, count)
       costs.push(cost)
     }
+    return costs
   end
 
   def offer_cost(sku, qty)
@@ -104,4 +105,5 @@ class Checkout
     end 
   end
 end
+
 
