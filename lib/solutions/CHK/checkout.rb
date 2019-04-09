@@ -25,7 +25,7 @@ class Checkout
     @sku_counts.map { |char, count|
       new_qty = count
       if @offer_other_products[char] != nil 
-        free_qty = count / @offer_other_products[char][0]
+        free_qty = new_qty / @offer_other_products[char][0]
         no_bought = sku_counts[@offer_other_products[char][1]]
         new_qty = no_bought - free_qty <= 0 ? 0 : no_bought - free_qty
       end
@@ -49,7 +49,7 @@ class Checkout
 
   def costs(sku_counts)
     costs = []
-    skus.counts.each { |char, count| 
+    sku_counts.each { |char, count| 
       cost = @offers[char] == nil ? count * @price_table[char] 
                         : offer_cost(char, count)
       costs.push(cost)
@@ -97,5 +97,6 @@ class Checkout
     end 
   end
 end
+
 
 
