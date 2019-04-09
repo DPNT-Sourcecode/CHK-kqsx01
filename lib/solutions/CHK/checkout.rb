@@ -53,16 +53,22 @@ class Checkout
   end
 
   def discount(char, skus)
+    p "char #{char}"
     discount = @offer_other_products[char]
+    p "discount #{discount}"
     discount_qty = skus.count(char) / discount[0]
+    p "discount_qty #{discount_qty}"
     if skus.include?(discount[1])
       if skus.count(discount[1]) == discount_qty
+        p "A #{skus.count(discount[1]) * @price_table[discount[1]]} "
         return skus.count(discount[1]) * @price_table[discount[1]]
       else
+        p "B #{discount_qty * @price_table[discount[1]]}"
         return discount_qty * @price_table[discount[1]]
       end
     end 
   end
 end
+
 
 
