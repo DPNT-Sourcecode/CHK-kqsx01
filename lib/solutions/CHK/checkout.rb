@@ -59,7 +59,7 @@ class Checkout
     discount_qty = skus.count(char) / discount[0]
     p "discount_qty #{discount_qty}"
     if skus.include?(discount[1])
-      if skus.count(discount[1]) == discount_qty
+      if skus.count(discount[1]) < discount_qty
         p "A #{skus.count(discount[1]) * @price_table[discount[1]]} "
         return skus.count(discount[1]) * @price_table[discount[1]]
       else
@@ -69,6 +69,7 @@ class Checkout
     end 
   end
 end
+
 
 
 
