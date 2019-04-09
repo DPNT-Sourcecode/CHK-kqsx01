@@ -13,15 +13,32 @@ class Checkout
 
   def checkout(skus) 
     return -1 if validate(skus) == -1
+    @sku_counts = count_each_sku(skus)
+    remove_free_products
     costs = costs(skus)
     p "costs #{costs}"
     total = costs.reduce(0) { |sum, num| sum + num }
-    
-    discounts = discounts(skus).reduce(0) { |sum, num| sum + num }
-    p "discounts #{discounts}"
-    total -= discounts
     return total 
   end
+
+  def remove_free_products
+    @sku_counts.map { |char, count|
+      new_qty = count
+      if @offer_other_products[char] != nil 
+        free_qty = count / @offer_other_products[char][0]
+        no_bought = sku_counts[@offer_other_products[char][1]]
+        new_qty = no_bought - free_qty <= 0 ? 0 : no_bought - free_qty
+      end
+      [char, new_qty]
+    }.to_h
+  end
+
+  def count_each_sku
+    sku_counts = {}
+    skus.chars.uniq.each { |char|
+      sku_counts[char] = skus.count(char)
+    }
+  end 
 
   def validate(skus)
     skus.chars.uniq.each { |char|
@@ -78,3 +95,4 @@ class Checkout
     end 
   end
 end
+
