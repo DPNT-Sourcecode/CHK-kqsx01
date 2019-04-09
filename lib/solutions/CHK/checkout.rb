@@ -9,8 +9,12 @@ class Checkout
   def checkout(skus) 
     return -1 if validate(skus) == -1
     costs = costs(skus)
+    p "costs #{costs}"
     total = costs.reduce(0) { |sum, num| sum + num }
-    total -= discounts(skus).reduce(0) { |sum, num| sum + num }
+    
+    discounts = discounts(skus).reduce(0) { |sum, num| sum + num }
+    p "discounts #{discounts}"
+    total -= discounts
     return total 
   end
 
@@ -69,7 +73,3 @@ class Checkout
     end 
   end
 end
-
-
-
-
