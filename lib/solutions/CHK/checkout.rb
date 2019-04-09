@@ -38,6 +38,8 @@ class Checkout
   def count_each_sku(skus)
     sku_counts = {}
     skus.chars.uniq.each { |char|
+      p "char #{char}"
+      p "skus.count(char) #{skus.count(char)}"
       sku_counts[char] = skus.count(char)
     }
   end 
@@ -99,6 +101,3 @@ class Checkout
     end 
   end
 end
-
-
-
