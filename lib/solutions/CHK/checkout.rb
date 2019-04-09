@@ -21,21 +21,18 @@ class Checkout
 
   def costs(skus)
     return skus.chars.uniq.map { |char| 
-      if @offers[char] == nil
-        skus.count(char) * @price_table[char] 
-      else
-        offer_cost(char, skus.count(char))
-      end
+      @offers[char] == nil ? skus.count(char) * @price_table[char] 
+                        : offer_cost(char, skus.count(char))
     }
   end
 
   def offer_cost(sku, qty)
-    offer = @offers[sku]
-    offer_qty = offer[0]
+    offer_qty = @offers[sku][0]
     return qty * @price_table[sku] if qty < offer_qty
-    offer_cost = offer[1] * (qty / offer_qty)
+    offer_cost = @offers[sku][1] * (qty / offer_qty)
     non_offer_cost = @price_table[sku] * (qty % offer_qty)
     return offer_cost + non_offer_cost
   end
 end
+
 
