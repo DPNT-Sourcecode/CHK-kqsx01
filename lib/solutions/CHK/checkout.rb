@@ -30,6 +30,10 @@ class Checkout
     offers = @offers[sku]
     offer_cost = 0
     non_offer_qty = offers.reduce(qty) { |rem, offer| 
+      p "rem #{rem}"
+      p "offer #{offer}"
+      p "offer[0] #{offer[0]}"
+      p "offer[1] #{offer[1]}"
       if qualify?(offer, rem)
         offer_cost += offer[1] * (rem / offer[0])
       end
@@ -43,3 +47,4 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
+
