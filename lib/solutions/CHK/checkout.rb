@@ -9,14 +9,11 @@ class Checkout
       skus.count(char) * @price_table[char]
     end
 
-    total = 0
-    costs.each do |cost| 
-      total += cost
-    end
-
+    total = costs.reduce(0) { |sum, num| sum + num }
     return total 
   end
 
 end
+
 
 
