@@ -6,6 +6,11 @@ class Checkout
     @offer_other_products = {"E" => [2, "B"]}
   end
 
+#  create a hash of skus to occurances
+#  look for offers of other products to reduce the occurances if any products are free
+#  then use that hash to work out the costs
+
+
   def checkout(skus) 
     return -1 if validate(skus) == -1
     costs = costs(skus)
@@ -73,3 +78,4 @@ class Checkout
     end 
   end
 end
+
