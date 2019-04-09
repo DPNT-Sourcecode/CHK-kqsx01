@@ -6,6 +6,11 @@ describe Checkout do
         expect(c.checkout("D")).to eq(15)
     end
 
+    it 'returns 30 when given DD' do
+        c = Checkout.new
+        expect(c.checkout("DD")).to eq(30)
+    end
+
     # For any illegal input return -1
-    
+
 end
