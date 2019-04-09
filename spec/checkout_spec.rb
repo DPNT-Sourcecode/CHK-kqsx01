@@ -210,8 +210,15 @@ describe Checkout do
         c = Checkout.new
         expect(c.checkout("VVV")).to eq(130)
     end
-# | N    | 40    | 3N get one M free      |
 
-# | R    | 50    | 3R get one Q free      |
+    it 'returns 120 when given NNNM' do
+        c = Checkout.new
+        expect(c.checkout("NNNM")).to eq(120)
+    end
+
+    it 'returns 150 when given RRRQ' do
+        c = Checkout.new
+        expect(c.checkout("RRRQ")).to eq(150)
+    end
 
 end
