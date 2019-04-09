@@ -28,7 +28,7 @@ class Checkout
       new_qty = count
       if @offer_other_products[char] != nil 
         free_qty = new_qty / @offer_other_products[char][0]
-        no_bought = sku_counts[@offer_other_products[char][1]]
+        no_bought = @sku_counts[@offer_other_products[char][1]]
         new_qty = no_bought - free_qty <= 0 ? 0 : no_bought - free_qty
       end
       [char, new_qty]
@@ -105,5 +105,6 @@ class Checkout
     end 
   end
 end
+
 
 
