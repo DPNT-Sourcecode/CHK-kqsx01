@@ -1,8 +1,12 @@
 # noinspection RubyUnusedLocalVariable
 class Checkout
+  def initialize
+    @price_table = {"D": 15}
+  end
 
   def checkout(skus) 
-    raise 'Not implemented'
+    return @price_table[skus]
   end
 
 end
+
