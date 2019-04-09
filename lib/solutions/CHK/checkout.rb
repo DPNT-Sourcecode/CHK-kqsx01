@@ -48,8 +48,21 @@ class Checkout
   def discounts(skus)
     return skus.chars.uniq.map { |char|
       @offer_other_products[char] == nil ? 0
-        : discount(char, skus.count(char))
+        : discount(char, skus)
     }
   end
+
+  def discount(char, skus)
+    discount = @offer_other_products[char]
+    discount_qty = skus.count(char) / discount[0]
+    if skus.include?(discount[1])
+      if skus.count(discount[1]) == discount_qty
+        return skus.count(discount[1]) * @price_table[discount[1]]
+      else
+        return discount_qty * @price_table[discount[1]]
+      end
+    end 
+  end
 end
+
 
