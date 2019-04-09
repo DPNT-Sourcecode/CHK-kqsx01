@@ -5,7 +5,8 @@ class Checkout
   end
 
   def checkout(skus) 
-    return @price_table[skus]
+    qty = skus.count("D")
+    return @price_table["D"] * qty
   end
 
 end
