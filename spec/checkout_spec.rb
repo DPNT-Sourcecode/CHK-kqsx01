@@ -63,6 +63,6 @@ describe Checkout do
 
     it 'returns 190 when given BBBEEEE' do
         c = Checkout.new
-        expect(c.checkout("BBBEEEE")).to eq(175)
+        expect(c.checkout("BBBEEEE")).to eq(190)
     end
 end
