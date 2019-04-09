@@ -14,6 +14,3 @@ class Checkout
   end
 
 end
-
-
-
