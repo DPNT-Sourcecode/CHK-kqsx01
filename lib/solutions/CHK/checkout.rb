@@ -24,15 +24,17 @@ class Checkout
   end
 
   def remove_free_products
-    @sku_counts.map { |char, count|
+    @sku_counts.each { |char, count|
       new_qty = count
       if @offer_other_products[char] != nil 
         free_qty = new_qty / @offer_other_products[char][0]
-        no_bought = @sku_counts[@offer_other_products[char][1]]
+        free_sku = @offer_other_products[char][1]
+        no_bought = @sku_counts[free_sku]
         new_qty = no_bought - free_qty <= 0 ? 0 : no_bought - free_qty
+        @sku_counts[free_sku] = new_qty
       end
-      [char, new_qty]
-    }.to_h
+    }
+    return @sku_counts
   end
 
   def count_each_sku(skus)
@@ -105,6 +107,7 @@ class Checkout
     end 
   end
 end
+
 
 
 
