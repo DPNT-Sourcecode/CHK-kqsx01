@@ -3,6 +3,7 @@ class Checkout
   def initialize
     @price_table = {"A" => 50, "B" => 30, "C" => 20, "D" => 15}
     @offers = {"A" => [[5, 200], [3, 130]], "B" => [[2, 45]]}
+    @offer_other_products = {"E" => [2, "B"]}
   end
 
   def checkout(skus) 
@@ -43,4 +44,5 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
+
 
