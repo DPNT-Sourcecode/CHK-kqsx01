@@ -14,7 +14,9 @@ class Checkout
   def checkout(skus) 
     return -1 if validate(skus) == -1
     @sku_counts = count_each_sku(skus)
+    p "sku_counts #{@sku_counts}"
     sku_counts_after_discounts = remove_free_products
+    p "sku_counts_after_discounts #{sku_counts_after_discounts}"
     costs = costs(sku_counts_after_discounts)
     p "costs #{costs}"
     total = costs.reduce(0) { |sum, num| sum + num }
