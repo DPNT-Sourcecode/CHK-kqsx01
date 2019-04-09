@@ -14,16 +14,14 @@ class Checkout
   def checkout(skus) 
     return -1 if validate(skus) == -1
     @sku_counts = count_each_sku(skus)
-    p "sku_counts1 #{@sku_counts}"
     sku_counts_after_discounts = remove_free_products
-    p "sku_counts_after_discounts #{sku_counts_after_discounts}"
     costs = costs(sku_counts_after_discounts)
-    p "costs #{costs}"
     total = costs.reduce(0) { |sum, num| sum + num }
     return total 
   end
 
   def remove_free_products
+    new_counts = {}
     @sku_counts.each { |char, count|
       new_qty = count
       if @offer_other_products[char] != nil 
@@ -31,8 +29,11 @@ class Checkout
         free_sku = @offer_other_products[char][1]
         no_bought = @sku_counts[free_sku] == nil ? 0 : @sku_counts[free_sku]
         new_qty = no_bought - free_qty <= 0 ? 0 : no_bought - free_qty
-        @sku_counts[free_sku] = new_qty
+        new_counts[free_sku] = new_qty
       end
+    }
+    new_counts.each { |char, count|
+      @sku_counts[char] = count
     }
     return @sku_counts
   end
@@ -40,12 +41,8 @@ class Checkout
   def count_each_sku(skus)
     sku_counts = {}
     skus.chars.uniq.each { |char|
-      p "char #{char}"
-      p "skus.count(char) #{skus.count(char)}"
       sku_counts[char] = skus.count(char)
-      p "sku_counts[char] #{sku_counts[char]}"
     }
-    p "sku_counts2 #{sku_counts}"
     return sku_counts
   end 
 
@@ -82,28 +79,5 @@ class Checkout
   def qualify?(offer, qty)
     return qty >= offer[0] ? true : false
   end
-
-  def discounts(skus)
-    return skus.chars.uniq.map { |char|
-      @offer_other_products[char] == nil ? 0
-        : discount(char, skus)
-    }
-  end
-
-  def discount(char, skus)
-    p "char #{char}"
-    discount = @offer_other_products[char]
-    p "discount #{discount}"
-    discount_qty = skus.count(char) / discount[0]
-    p "discount_qty #{discount_qty}"
-    if skus.include?(discount[1])
-      if skus.count(discount[1]) < discount_qty
-        p "A #{skus.count(discount[1]) * @price_table[discount[1]]} "
-        return skus.count(discount[1]) * @price_table[discount[1]]
-      else
-        p "B #{discount_qty * @price_table[discount[1]]}"
-        return discount_qty * @price_table[discount[1]]
-      end
-    end 
-  end
 end
+
