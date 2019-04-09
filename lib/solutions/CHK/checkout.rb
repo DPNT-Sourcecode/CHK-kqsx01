@@ -21,6 +21,7 @@ class Checkout
 
   def costs(skus)
     return skus.chars.uniq.map { |char| 
+      p "char #{char}"
       @offers[char] == nil ? skus.count(char) * @price_table[char] 
                         : offer_cost(char, skus.count(char))
     }
