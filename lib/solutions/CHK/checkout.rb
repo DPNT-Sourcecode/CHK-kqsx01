@@ -10,36 +10,32 @@ class Checkout
       "H" => [[10, 80], [5, 45]], "K" => [[2, 120]], "P" => [[5, 200]],
       "Q" => [[3, 80]], "U" => [[4, 120]], "V" => [[3, 130], [2, 90]]}
     @offer_other_products = {"E" => [2, "B"], "N" => [3, "M"], "R" => [3, "Q"]}
+    @group_discounts = ["S", "T", "X", "Y", "Z"]
   end
-
-#  create a hash of skus to occurances
-#  look for offers of other products to reduce the occurances if any products are free
-#  then use that hash to work out the costs
-
 
   def checkout(skus) 
     return -1 if validate(skus) == -1
     @sku_counts = count_each_sku(skus)
+    p "counts 1 #{@sku_counts}"
     remove_free_products
+    p "counts 2 #{@sku_counts}"
     c = costs
+    p "counts 3 #{@sku_counts}"
     total = c.reduce(0) { |sum, num| sum + num }
     return total 
   end
 
   def group_discounts
-    # count no of S, T, X, Y, Z
-    # add 45 to total for each group of 3 
-    # reduce counts so that the skus are not costed again in the next step
     total = 0
     group_count = 0
-    ["S", "T", "X", "Y", "Z"].each { |char|
+    @group_discounts.each { |char|
       group_count += @sku_counts[char] != nil ? @sku_counts[char] : 0
     }
 
     if group_count >= 3
       reduce_counts = (group_count / 3) 
       total = 45 * reduce_counts
-      ["S", "T", "X", "Y", "Z"].each { |char| 
+      @group_discounts.each { |char| 
         if reduce_counts > 0
           if reduce_counts > @sku_counts[char]
             reduce_counts -= @sku_counts[char]
@@ -69,7 +65,6 @@ class Checkout
     new_counts.each { |char, count|
       @sku_counts[char] = count
     }
-    # return @sku_counts
   end
 
   def count_each_sku(skus)
@@ -115,5 +110,6 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
+
 
 
