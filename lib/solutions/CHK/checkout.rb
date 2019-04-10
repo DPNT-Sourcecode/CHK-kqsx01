@@ -86,5 +86,3 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
-
-
