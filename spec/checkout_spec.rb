@@ -221,5 +221,9 @@ describe Checkout do
         expect(c.checkout("RRRQ")).to eq(150)
     end
 
+    it 'returns 45 when given STX' do
+        c = Checkout.new
+        expect(c.checkout("STX")).to eq(45)
+    end
 end
 
