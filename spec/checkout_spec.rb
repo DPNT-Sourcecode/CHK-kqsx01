@@ -91,9 +91,9 @@ describe Checkout do
         expect(c.checkout("J")).to eq(60)
     end
 
-    it 'returns 80 when given K' do
+    it 'returns 70 when given K' do
         c = Checkout.new
-        expect(c.checkout("K")).to eq(80)
+        expect(c.checkout("K")).to eq(70)
     end
 
     it 'returns 90 when given L' do
@@ -131,9 +131,9 @@ describe Checkout do
         expect(c.checkout("R")).to eq(50)
     end
 
-    it 'returns 30 when given S' do
+    it 'returns 20 when given S' do
         c = Checkout.new
-        expect(c.checkout("S")).to eq(30)
+        expect(c.checkout("S")).to eq(20)
     end
 
     it 'returns 20 when given T' do
@@ -181,9 +181,9 @@ describe Checkout do
         expect(c.checkout("HHHHHHHHHH")).to eq(80)
     end
 
-    it 'returns 150 when given KK' do
+    it 'returns 120 when given KK' do
         c = Checkout.new
-        expect(c.checkout("KK")).to eq(150)
+        expect(c.checkout("KK")).to eq(120)
     end
 
     it 'returns 200 when given PPPPP' do
