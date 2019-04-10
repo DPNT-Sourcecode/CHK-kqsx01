@@ -80,7 +80,10 @@ class Checkout
 
   def costs
     c = []
+    p 'sku counts 1 #{@sku_counts}'
     c.push(group_discounts)
+    p "c #{c}"
+    p "sku counts 2 #{@sku_counts}"
     @sku_counts.each { |char, count| 
       cost = @offers[char] == nil ? count * @price_table[char] 
                         : offer_cost(char, count)
@@ -106,6 +109,7 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
+
 
 
 
