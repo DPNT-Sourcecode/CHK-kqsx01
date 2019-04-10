@@ -21,8 +21,8 @@ class Checkout
     return -1 if validate(skus) == -1
     @sku_counts = count_each_sku(skus)
     remove_free_products
-    costs = costs
-    total = costs.reduce(0) { |sum, num| sum + num }
+    c = costs
+    total = c.reduce(0) { |sum, num| sum + num }
     return total 
   end
 
@@ -31,8 +31,11 @@ class Checkout
     # add 45 to total for each group of 3 
     # reduce counts so that the skus are not costed again in the next step
     total = 0
-    group_count = @sku_counts["S"] + @sku_counts["T"] + @sku_counts["X"] +
-    @sku_counts["Y"] + @sku_counts["Z"] 
+    group_count = 0
+    ["S", "T", "X", "Y", "Z"].each { |char|
+      group_count += @sku_counts[char] != nil ? @sku_counts[char] : 0
+    }
+
     if group_count >= 3
       reduce_counts = (group_count / 3) 
       total = 45 * reduce_counts
@@ -85,14 +88,14 @@ class Checkout
   end 
 
   def costs
-    costs = []
-    costs.push(group_discounts)
+    c = []
+    c.push(group_discounts)
     @sku_counts.each { |char, count| 
       cost = @offers[char] == nil ? count * @price_table[char] 
                         : offer_cost(char, count)
-      costs.push(cost)
+      c.push(cost)
     }
-    return costs
+    return c
   end
 
   def offer_cost(sku, qty)
@@ -112,4 +115,5 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
+
 
