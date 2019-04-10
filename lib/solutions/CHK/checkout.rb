@@ -10,7 +10,7 @@ class Checkout
       "H" => [[10, 80], [5, 45]], "K" => [[2, 120]], "P" => [[5, 200]],
       "Q" => [[3, 80]], "U" => [[4, 120]], "V" => [[3, 130], [2, 90]]}
     @offer_other_products = {"E" => [2, "B"], "N" => [3, "M"], "R" => [3, "Q"]}
-    @group_discounts = ["S", "T", "X", "Y", "Z"]
+    @group_discounts = ["Z", "Y", "S", "T", "X"]
   end
 
   def checkout(skus) 
