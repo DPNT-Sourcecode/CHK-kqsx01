@@ -21,6 +21,7 @@ class Checkout
     p "counts 2 #{@sku_counts}"
     c = costs
     p "counts 3 #{@sku_counts}"
+    p "costs #{costs}"
     total = c.reduce(0) { |sum, num| sum + num }
     return total 
   end
@@ -110,6 +111,7 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
+
 
 
 
