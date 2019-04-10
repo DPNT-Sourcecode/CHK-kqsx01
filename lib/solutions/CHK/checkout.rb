@@ -29,6 +29,7 @@ class Checkout
       group_count += @sku_counts[char] != nil ? @sku_counts[char] : 0
     }
 
+    p "group count 1 #{group_count}"
     if group_count >= 3
       total = 45 * (group_count / 3)
       @group_discounts.each { |char| 
@@ -36,9 +37,15 @@ class Checkout
           if group_count > @sku_counts[char]
             group_count -= @sku_counts[char]
             @sku_counts[char] = 0
+            p "char 1 #{char}"
+            p "group count 2 #{group_count}"
+            p "sku_counts[char] 1 #{@sku_counts[char]}"
           else
             @sku_counts[char] -= group_count
             group_count = 0
+            p "char 2 #{char}"
+            p "group count 3 #{group_count}"
+            p "sku_counts[char] 2 #{@sku_counts[char]}"
           end
         end
       }
@@ -109,3 +116,4 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
+
