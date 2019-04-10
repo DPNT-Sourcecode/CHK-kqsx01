@@ -30,23 +30,18 @@ class Checkout
     }
 
     group_count = (count / 3) * 3
-    p "group count 1 #{group_count}"
     if group_count >= 3
       total = 45 * (group_count / 3)
       @group_discounts.each { |char| 
         if group_count > 0
-          if group_count > @sku_counts[char]
-            group_count -= @sku_counts[char]
-            @sku_counts[char] = 0
-            p "char 1 #{char}"
-            p "group count 2 #{group_count}"
-            p "sku_counts[char] 1 #{@sku_counts[char]}"
-          else
-            @sku_counts[char] -= group_count
-            group_count = 0
-            p "char 2 #{char}"
-            p "group count 3 #{group_count}"
-            p "sku_counts[char] 2 #{@sku_counts[char]}"
+          if @sku_counts[char] != nil
+            if group_count > @sku_counts[char]
+              group_count -= @sku_counts[char]
+              @sku_counts[char] = 0
+            else
+              @sku_counts[char] -= group_count
+              group_count = 0
+            end
           end
         end
       }
@@ -88,10 +83,7 @@ class Checkout
 
   def costs
     c = []
-    p 'sku counts 1 #{@sku_counts}'
     c.push(group_discounts)
-    p "c #{c}"
-    p "sku counts 2 #{@sku_counts}"
     @sku_counts.each { |char, count| 
       cost = @offers[char] == nil ? count * @price_table[char] 
                         : offer_cost(char, count)
@@ -117,5 +109,6 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
+
 
 
