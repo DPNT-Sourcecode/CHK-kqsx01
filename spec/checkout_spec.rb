@@ -156,19 +156,19 @@ describe Checkout do
         expect(c.checkout("W")).to eq(20)
     end
 
-    it 'returns 90 when given X' do
+    it 'returns 17 when given X' do
         c = Checkout.new
-        expect(c.checkout("X")).to eq(90)
+        expect(c.checkout("X")).to eq(17)
     end
 
-    it 'returns 10 when given Y' do
+    it 'returns 20 when given Y' do
         c = Checkout.new
-        expect(c.checkout("Y")).to eq(10)
+        expect(c.checkout("Y")).to eq(20)
     end
 
-    it 'returns 50 when given Z' do
+    it 'returns 21 when given Z' do
         c = Checkout.new
-        expect(c.checkout("Z")).to eq(50)
+        expect(c.checkout("Z")).to eq(21)
     end
 
     it 'returns 45 when given HHHHH' do
@@ -222,3 +222,4 @@ describe Checkout do
     end
 
 end
+
