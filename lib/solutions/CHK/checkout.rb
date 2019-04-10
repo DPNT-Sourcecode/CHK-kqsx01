@@ -16,12 +16,8 @@ class Checkout
   def checkout(skus) 
     return -1 if validate(skus) == -1
     @sku_counts = count_each_sku(skus)
-    p "counts 1 #{@sku_counts}"
     remove_free_products
-    p "counts 2 #{@sku_counts}"
     c = costs
-    p "counts 3 #{@sku_counts}"
-    p "costs #{costs}"
     total = c.reduce(0) { |sum, num| sum + num }
     return total 
   end
@@ -34,24 +30,16 @@ class Checkout
     }
 
     if group_count >= 3
-      reduce_counts = (group_count / 3) 
-      p "reduce counts 1 #{reduce_counts}"
-      total = 45 * reduce_counts
+      reduce_counts = group_count
+      total = 45 * (group_count / 3)
       @group_discounts.each { |char| 
-        p "reduce counts 2 #{reduce_counts}"
         if reduce_counts > 0
           if reduce_counts > @sku_counts[char]
             reduce_counts -= @sku_counts[char]
-            p "char 1 #{char}"
-            p "sku_counts[char] 1 #{@sku_counts[char]}"
-            p "reduce counts 3 #{reduce_counts}"
             @sku_counts[char] = 0
           else
             @sku_counts[char] -= reduce_counts
             reduce_counts = 0
-            p "char 2 #{char}"
-            p "sku_counts[char] 2 #{@sku_counts[char]}"
-            p "reduce counts 4 #{reduce_counts}"
           end
         end
       }
@@ -119,6 +107,7 @@ class Checkout
     return qty >= offer[0] ? true : false
   end
 end
+
 
 
 
