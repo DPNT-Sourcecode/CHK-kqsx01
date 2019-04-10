@@ -30,16 +30,15 @@ class Checkout
     }
 
     if group_count >= 3
-      reduce_counts = group_count
       total = 45 * (group_count / 3)
       @group_discounts.each { |char| 
-        if reduce_counts > 0
-          if reduce_counts > @sku_counts[char]
-            reduce_counts -= @sku_counts[char]
+        if group_count > 0
+          if group_count > @sku_counts[char]
+            group_count -= @sku_counts[char]
             @sku_counts[char] = 0
           else
-            @sku_counts[char] -= reduce_counts
-            reduce_counts = 0
+            @sku_counts[char] -= group_count
+            group_count = 0
           end
         end
       }
