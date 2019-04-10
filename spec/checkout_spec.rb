@@ -231,8 +231,8 @@ describe Checkout do
         expect(c.checkout("ZYX")).to eq(45)
     end
 
-    it 'returns 65 when given STX' do
+    it 'returns 62 when given SSTX' do
         c = Checkout.new
-        expect(c.checkout("SSTX")).to eq(65)
+        expect(c.checkout("SSTX")).to eq(62)
     end
 end
