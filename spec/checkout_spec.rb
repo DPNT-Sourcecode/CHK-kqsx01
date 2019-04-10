@@ -236,4 +236,3 @@ describe Checkout do
         expect(c.checkout("SSTX")).to eq(62)
     end
 end
-
